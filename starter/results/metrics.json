@@ -1,0 +1,62 @@
+{
+  "A/dev": {
+    "N": 15,
+    "hit1": 9,
+    "hit3": 12,
+    "filter_N": 3,
+    "filter_ok": 1,
+    "hit1_str": "9/15",
+    "hit3_str": "12/15",
+    "filter_str": "1/3"
+  },
+  "B/dev": {
+    "N": 15,
+    "hit1": 11,
+    "hit3": 13,
+    "filter_N": 3,
+    "filter_ok": 2,
+    "hit1_str": "11/15",
+    "hit3_str": "13/15",
+    "filter_str": "2/3"
+  },
+  "C/dev": {
+    "N": 15,
+    "hit1": 11,
+    "hit3": 13,
+    "filter_N": 3,
+    "filter_ok": 3,
+    "hit1_str": "11/15",
+    "hit3_str": "13/15",
+    "filter_str": "3/3"
+  },
+  "A/test": {
+    "N": 5,
+    "hit1": 2,
+    "hit3": 2,
+    "filter_N": 2,
+    "filter_ok": 1,
+    "hit1_str": "2/5",
+    "hit3_str": "2/5",
+    "filter_str": "1/2"
+  },
+  "B/test": {
+    "N": 5,
+    "hit1": 3,
+    "hit3": 3,
+    "filter_N": 2,
+    "filter_ok": 0,
+    "hit1_str": "3/5",
+    "hit3_str": "3/5",
+    "filter_str": "0/2"
+  },
+  "C/test": {
+    "N": 5,
+    "hit1": 3,
+    "hit3": 3,
+    "filter_N": 2,
+    "filter_ok": 2,
+    "hit1_str": "3/5",
+    "hit3_str": "3/5",
+    "filter_str": "2/2"
+  }
+}

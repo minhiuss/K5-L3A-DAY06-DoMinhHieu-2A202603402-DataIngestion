@@ -1,4 +1,4 @@
 strategy,chunking,chunk_size,overlap,metadata,filter,vectorizer,hypothesis,dev_hit1,dev_hit3,test_hit1,test_hit3,notes
-A,,,,,,,,,,,,
-B,,,,,,,,,,,,
-C,,,,,,,,,,,,
+A,fixed_size,500,50,document_id/source/page/section/platform,none,sentence-transformers/all-MiniLM-L6-v2 (384d; local; cosine; exact),Baseline: fixed windows cut sentences so evidence is split or diluted,9/15,12/15,2/5,2/5,273 chunks; mean 436.5 chars; 0 duplicates after re-ingest
+B,by_paragraph (line<90 chars ends a paragraph; pack to 800; cut paragraphs >800),800,0,document_id/source/page/section/platform,none,sentence-transformers/all-MiniLM-L6-v2 (384d; local; cosine; exact),Whole paragraphs keep conditions with their subject so Hit@1 rises vs A,11/15,13/15,3/5,3/5,212 chunks; mean 515.7 chars; same chunks as C
+C,by_paragraph (same chunks as B),800,0,document_id/source/page/section/platform,platform when the question names it (q03 q09 q12 dev; q16 q20 test),sentence-transformers/all-MiniLM-L6-v2 (384d; local; cosine; exact),Filtering by platform removes the parallel Word/Docs passage that competes with the right one,11/15,13/15,3/5,3/5,Only change vs B is the filter; filter compliance dev 3/3 test 2/2 (B: 2/3 and 0/2); chosen on dev by tie-break 3

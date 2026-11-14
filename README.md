@@ -1,5 +1,45 @@
 # Day 06 · Data Ingestion Engineering
 
+## Bài làm — Đỗ Minh Hiếu (2A202603402)
+
+**Kết quả** (chọn trên dev, theo `benchmark/questions.json` → `meta.selection_rule`): **C**
+
+| | dev Hit@1 | dev Hit@3 | test Hit@1 | test Hit@3 | filter dev / test |
+|---|---|---|---|---|---|
+| A fixed 500/50 | 9/15 | 12/15 | 2/5 | 2/5 | 1/3 · 1/2 |
+| B paragraph ≤800 | 11/15 | 13/15 | 3/5 | 3/5 | 2/3 · 0/2 |
+| C = B + filter `platform` | 11/15 | 13/15 | 3/5 | 3/5 | 3/3 · 2/2 |
+
+Báo cáo: [report/individual/2A202603402_DoMinhHieu.md](report/individual/2A202603402_DoMinhHieu.md) · Thông tin: [STUDENT.md](STUDENT.md)
+
+### Setup và chạy (Windows PowerShell, từ `starter/`)
+
+1. Tải PDF (không commit, 290 MB): URL trong [data/manifest.json](data/manifest.json) → lưu vào `starter/data/Workplace_Software_and_Skills_-_WEB_IlfJtcP.pdf`.
+2. Môi trường (venv đặt ở đường ngắn vì đường dẫn torch vượt 260 ký tự của Windows):
+   ```powershell
+   python -m venv C:\venvs\day06
+   C:\venvs\day06\Scripts\Activate.ps1
+   python -m pip install -r requirements.txt
+   Copy-Item .env.example .env      # sửa cổng trong DATABASE_URL thành 15433
+   ```
+3. Database (mở Docker Desktop trước): `docker compose -p day6_student_starter up -d --wait` rồi `python scripts/check_setup.py` → `Setup OK`. Cổng host đổi **55433 → 15433** trong `docker-compose.yml` vì Windows giữ dải 55387–55486.
+4. Chạy: `python -m src.run` (model `sentence-transformers/all-MiniLM-L6-v2` tự tải lần đầu, ~90 MB; đặt khác bằng `EMBEDDING_MODEL` trong `.env`).
+
+### Đầu ra
+
+| File | Nội dung |
+|---|---|
+| `data/manifest.json` | nguồn, giấy phép, trang được tính, số ký tự từng trang |
+| `benchmark/questions.json` | 20 câu (15 dev / 5 test), gold page, evidence, filter, tiêu chí chọn |
+| `artifacts/experiment_log.csv` | tham số + giả thuyết + kết quả A/B/C |
+| `starter/results/traces.jsonl` | top-3 của mọi câu × A/B/C: chunk ID, text, score, metadata, nhãn hit |
+| `starter/results/metrics.json`, `run_log.json` | Hit@1/Hit@3 dev/test, phiên bản, thời gian, thống kê chunk, kiểm tra nạp lại |
+| `starter/results/audit_*.csv`, `audit_summary.json` | nhãn tay coherence, metadata, grounding |
+
+Code pipeline: `starter/src/` (`ingestion.py`, `chunking.py`, `embeddings.py`, `store.py`, `evaluation.py`, `run.py`). Chạy lại `run.py` không ghi đè các file nhãn tay đã có.
+
+---
+
 **Lab cá nhân** · **4 giờ** · **Dữ liệu tự chọn**
 
 Biến tài liệu thành kho tri thức có thể truy xuất cho AI agent, rồi đo xem cách chuẩn bị dữ liệu nào hiệu quả nhất.

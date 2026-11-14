@@ -1,0 +1,43 @@
+# Báo cáo cá nhân — Day 6
+
+Học viên: Đỗ Minh Hiếu · MSSV 2A202603402 · L3A. Chạy ngày 2026-11-14.
+
+## Dữ liệu và pipeline
+- **Chủ đề, nguồn/quyền, số trang và quy tắc tính trang:** OpenStax *Workplace Software and Skills*, Chương 3 "Creating and Working in Documents" (©2026 Rice University, **CC BY-NC-SA 4.0**, dùng phi thương mại cho bài học; PDF không commit vì 290 MB > giới hạn GitHub, URL trong `data/manifest.json`). PDF có 1047 trang vật lý; tính **71 trang PDF 148–218** (mục 3.1–3.9), bỏ Chapter Review 219–226 và các chương khác. Mọi trang được tính có văn bản thân bài (trang ít chữ nhất 181 ký tự; tổng 109.435 ký tự sau chuẩn hóa; số ký tự từng trang trong manifest). Số trang dùng **số trang PDF** (số in ở chân trang = PDF − 10).
+- **Chuẩn hóa, lỗi và giới hạn:** `pypdf` 6.21.4 trích từng trang; trang rỗng chỉ có trang 1–2 (bìa, ngoài phạm vi) → không cần OCR. `normalize_text`: Unicode NFC, nháy cong → thẳng (135 ký tự trong chương), gom khoảng trắng trong từng dòng nhưng **giữ xuống dòng**, bỏ footer "Access for free at openstax.org". Giới hạn: dòng header có số trang in (vd `160 3 • Creating and Working in Documents`) vẫn còn trong chunk; chú thích hình (figure caption) lẫn trong văn bản; PDF không có dòng trống giữa đoạn nên ranh giới đoạn là **phỏng đoán** (dòng < 90 ký tự = hết đoạn; dòng đầy dài ~104–114 ký tự). Kiểm trên trang 170: 8 đoạn khớp sách.
+- **Embedding / vector store / metric / lệnh chạy / chi phí:** `sentence-transformers/all-MiniLM-L6-v2` (sentence-transformers 6.3.0, torch 2.15.0+cpu, chạy local, **384 chiều**, `normalize_embeddings=True`, query và document xử lý giống nhau). PostgreSQL 16.16 + pgvector 0.8.7 (Docker, `starter/docker-compose.yml`, cổng **15433** vì 55433 nằm trong dải cổng Windows giữ). Metric **cosine** (`<=>`), tìm kiếm **exact** (không index ANN; 485 dòng). Lệnh: `cd starter` → `python -m src.run`. Thời gian (CPU laptop): đọc + chuẩn hóa 10 s; embed A 2,0 s, B 1,8 s; 60 truy vấn 1,9 s. **Chi phí 0** (không dùng API).
+- **Metadata:** bắt buộc `document_id` (`openstax-wss-ch3`), `source` (tên file PDF), `page` (int, số trang PDF). Bổ sung `section` (text, "3.1"–"3.9" hoặc "intro") và **`platform`** (text: `microsoft_word` cho 3.1–3.4, `google_docs` cho 3.6–3.8, `general` cho 3.5 và 3.9). Giá trị lấy từ **dòng tiêu đề mục trong sách** (9 tiêu đề, mỗi cái đúng một lần); trang chứa 2 mục được tách thành 2 phần (vd trang 180 = cuối 3.5 + đầu 3.6), nên 71 trang thành 78 phần. Lý do chọn `platform`: chương trình bày **cùng một việc cho Word và Google Docs** (comment, margins/page setup, theo dõi chỉnh sửa), nên câu hỏi nêu nền tảng cần filter để loại đoạn song song của nền tảng kia.
+
+## Cấu hình và benchmark
+- **A / B / C:** A = `fixed_size` 500 ký tự, overlap 50 (273 chunk, trung bình 436,5 ký tự). B = `by_paragraph`: gom đoạn tới tối đa 800 ký tự, đoạn > 800 cắt thành mảnh 800 (212 chunk, trung bình 515,7). C = **cùng chunk với B** (lưu một lần, `strategy = "B"`) + filter `platform` trong SQL **chỉ khi câu hỏi có filter**; câu không có filter chạy C không lọc. Khác biệt duy nhất B–C là filter; A–B khác cách chunk. Cùng model, store, metric, top-k = 3 cho cả ba. Nạp lại 2 lần: A 273 → 273, B 212 → 212 dòng (**0 trùng**; khóa `(strategy, chunk_id)` + `ON CONFLICT DO UPDATE`, xóa chunk cũ của tài liệu không còn trong lần nạp mới).
+- **Benchmark:** 20 câu (`benchmark/questions.json`), chia trước **15 dev (q01–q15) / 5 test (q16–q20)**. Loại: 4 direct, 5 paraphrase, 6 conditional, 5 filter (dev q03, q09, q12; test q16, q20). Filter lấy từ **lời câu hỏi** ("In Google Docs…", "In Microsoft Word…"), không từ đáp án. 20/20 `evidence_quote` được kiểm bằng so khớp nguyên văn trên văn bản trích xuất và nằm đúng `gold_page`. Rủi ro rò rỉ: q20 (margins Word) gần dev q05/q12; q16 (Suggesting mode) gần dev q10. **Công cụ AI:** q01–q03 tự viết; q04–q20 soạn với Claude rồi tôi đối chiếu PDF.
+- **Tiêu chí chọn (ghi vào `meta.selection_rule` trước lần chạy đầu):** chỉ dùng dev: (1) Evidence Hit@3 cao nhất; (2) hòa → Hit@1; (3) hòa → tuân thủ filter trên câu filter dev; (4) hòa → ít chunk/nhanh hơn. Chênh 1 câu (1/15) coi là hòa. Test chạy sau và không dùng để đổi lựa chọn.
+
+## Kết quả
+Hit = chunk đúng `document_id` + đúng trang + chứa **trọn** evidence (so khớp sau khi bỏ khác biệt khoảng trắng/nháy). Chạy lại 3 lần, số liệu giống nhau.
+
+| Strategy | Split | Hit@1 (n/N) | Evidence Hit@3 (n/N) | Chunk count | Thời gian | Chi phí |
+|---|---|---|---|---|---|---|
+| A | dev | 9/15 | 12/15 | 273 | embed 2,0 s | 0 |
+| B | dev | 11/15 | 13/15 | 212 | embed 1,8 s | 0 |
+| C | dev | 11/15 | 13/15 | 212 (= B) | embed dùng chung B | 0 |
+| A | test | 2/5 | 2/5 | 273 | 60 truy vấn tổng 1,9 s | 0 |
+| B | test | 3/5 | 3/5 | 212 | | 0 |
+| C | test | 3/5 | 3/5 | 212 | | 0 |
+
+| Strategy | Coherence trung bình /2 (n) | Metadata đủ và đúng (n/N) | Filter tuân thủ (n/N hoặc N/A) | Grounding 0/1/2 (số câu) và trung bình /2 |
+|---|---|---|---|---|
+| A | 0,6 (10) — 0: 4, 1: 6, 2: 0 | 15/15 | dev 1/3 · test 1/2 | 1 / 1 / 3 → 1,4 |
+| B | 1,8 (10) — 0: 0, 1: 2, 2: 8 | 15/15 | dev 2/3 · test 0/2 | 1 / 1 / 3 → 1,4 |
+| C | 1,8 (10) — cùng chunk với B | 15/15 | dev 3/3 · test 2/2 | 0 / 2 / 3 → 1,6 |
+
+(Filter tuân thủ của A và B = top-3 *tình cờ* đúng nền tảng dù không lọc; chỉ C thật sự lọc.)
+
+**Đường dẫn và cách chọn mẫu:** trace đầy đủ `starter/results/traces.jsonl` (câu hỏi, filter, chunk ID, text, score, metadata, nhãn hit từng hạng); số liệu `results/metrics.json`; cấu hình, phiên bản, thời gian, thống kê chunk `results/run_log.json`; nhãn tay `results/audit_coherence.csv`, `results/audit_metadata_grounding.csv`, tổng hợp `results/audit_summary.json`; cấu hình + giả thuyết `artifacts/experiment_log.csv`. **Coherence:** 10 vị trí **chọn trước khi chấm** = điểm giữa phần đầu của 10 trang PDF đầu (148–157); với mỗi vị trí chấm chunk A và chunk B chứa đoạn 40 ký tự ở đó. **Metadata:** 5 câu test × top-3 × 3 cấu hình = 45 bản ghi, so `page`/`section`/`platform` với sách. **Grounding:** 5 câu test, chấm top-3 mỗi cấu hình. Người chấm là tác giả (nguy cơ thiên lệch); 8 nhãn grounding (3 sửa, 5 điền ô trống) do Claude đề xuất và tôi duyệt, đánh dấu ở cột `labeled_by`.
+
+## Phân tích và kết luận
+- **A–B (đổi cách chunk):** B hơn A ở Hit@1 dev (+2 câu: 11 vs 9) và coherence (1,8 vs 0,6): cắt 500 ký tự hay cắt ngang câu/ý (q04 dev, q17 test: A lấy **đúng trang** nhưng không chunk nào chứa trọn evidence). Hit@3 dev chỉ hơn 1 câu (13 vs 12) → theo tiêu chí, coi như hòa ở mức Hit@3. Đánh đổi: B ít chunk hơn (212 vs 273) nhưng dài hơn, và quy tắc tách đoạn là phỏng đoán.
+- **B–C (chỉ đổi filter):** Hit@1/Hit@3 **không đổi** trên cả dev và test, nhưng filter loại được đoạn sai nền tảng: dev 3/3 vs 2/3, test 2/2 vs 0/2. **Ví dụ 1 — q16 (test, filter `google_docs`, trang 203):** A và B trả về trang 210/208/209 (mục 3.9 general) và 171/172 (Word); C trả về trang **203**/198/181 toàn `google_docs` — đúng trang nhưng chunk hạng 1 là đoạn sau trên cùng trang ("…turn on Suggesting mode when they begin working…"), chunk chứa câu "go to the top right of the Docs window… drop-down menu that says Editing" không lọt top-3 → vẫn trượt Hit, grounding C = 1 (A, B = 0). **Ví dụ 2 — q20 (test, filter `microsoft_word`, trang 155):** cả ba lấy được trang 155 và 153, nhưng câu "To adjust the margins of a page, go to the Layout tab." nằm ở chunk khác của trang 155; B còn để một chunk Google Docs (trang 197) ở hạng 1, C thì không. **Ví dụ 3 — q07 (dev, conditional, trang 165):** cả ba trượt; câu hỏi "fully justified" bị kéo về các đoạn định dạng chung (trang 153, 192, 169).
+- **Chiến lược chọn: C**, theo tiêu chí đã chốt (hòa B ở Hit@3 và Hit@1 dev, thắng ở tuân thủ filter). Áp dụng khi câu hỏi nêu rõ nền tảng và metadata lấy được từ cấu trúc tài liệu; khi câu hỏi không nêu nền tảng, C = B. Test xác nhận C ≥ B nhưng mẫu 5 câu quá nhỏ để kết luận chung.
+- **Hạn chế:** test 5 câu, dev 15 câu → mỗi câu = 20% / 6,7%; không suy rộng ngoài chương này. Nhãn tay do tác giả chấm, có phần AI hỗ trợ. Định nghĩa hit nghiêm (phải chứa **trọn** quote trong một chunk) → các trường hợp "đúng trang, sai chunk" (q10 B/C, q16 C, q20) bị tính trượt dù nội dung gần đúng. Thời gian đo trên một lần chạy CPU, không lặp lại để lấy trung bình. Header số trang in còn sót trong chunk có thể làm nhiễu embedding.
+- **Nếu làm lại:** bỏ thêm dòng header/caption khi chuẩn hóa; tách đoạn quá dài theo **câu** thay vì cắt cứng 800 ký tự; thử hybrid dense + BM25 cho câu có từ khóa chính xác (Layout tab, Editing); thêm câu test và tách theo chủ đề để giảm rò rỉ; cho phép evidence nhiều chunk (đánh giá phụ) để thấy rõ lỗi "đúng trang, sai chunk".

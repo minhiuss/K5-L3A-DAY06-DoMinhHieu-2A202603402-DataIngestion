@@ -1,0 +1,117 @@
+﻿strategy,id,question,filter,gold_page,rank,chunk_id,page,section,platform,auto_hit,metadata_correct_Y_N,grounding_0_1_2_per_question,reason,labeled_by,text
+A,q16,"In Google Docs, how do you turn on the mode that records each collaborator's edits?","{""platform"": ""google_docs""}",203,1,A:210:3.9:0,210,3.9,general,FALSE,Y,0,không chunk nào nói cách bật (menu Editing góc trên phải),student (lý do ghi bởi claude),"Figure 3.65 You can check the date of the current version and the collaborator who made the edits. The changes are highlighted and
+show who made them. (Google Docs is a trademark of Google LLC.)
+Figure 3.66 If you want to find out who made the changes, make sure Show changes option is checked so you"
+A,q16,"In Google Docs, how do you turn on the mode that records each collaborator's edits?","{""platform"": ""google_docs""}",203,2,A:208:3.9:2,208,3.9,general,FALSE,Y,,,student,"elp teams collaborate
+and share documents. These functions also help teams maintain accountability on the document's
+grammar, usage, style, guidelines, and subject matter inaccuracies or faults. Google automatically logs the
+chain of events of the addition or editing of text by time and collaborator"
+A,q16,"In Google Docs, how do you turn on the mode that records each collaborator's edits?","{""platform"": ""google_docs""}",203,3,A:171:3.4:3,171,3.4,microsoft_word,FALSE,Y,,,student,"s. Once the document is saved and passed along
+to the next collaborator, that next user can clearly see what has changed from the original document. This
+makes collaborating on a document asynchronously—that is, not at the same time—easy to do.
+3.4 • Collaborative Editing and Reviewing in Microsoft "
+B,q16,"In Google Docs, how do you turn on the mode that records each collaborator's edits?","{""platform"": ""google_docs""}",203,1,B:210:3.9:0,210,3.9,general,FALSE,Y,0,không chunk nào nói cách bật,student (lý do ghi bởi claude),"Figure 3.65 You can check the date of the current version and the collaborator who made the edits. The changes are highlighted and show who made them. (Google Docs is a trademark of Google LLC.)
+Figure 3.66 If you want to find out who made the changes, make sure Show changes option is checked so you"
+B,q16,"In Google Docs, how do you turn on the mode that records each collaborator's edits?","{""platform"": ""google_docs""}",203,2,B:172:3.4:3,172,3.4,microsoft_word,FALSE,Y,,,student,"Collaborators, or a final author, have the option to accept or reject each change that has been tracked. While reviewing changes, you can hover over any individual edit to see who made the edit and when, as shown in Figure 3.27. The Changes command group on the Review tab has the option of accepting"
+B,q16,"In Google Docs, how do you turn on the mode that records each collaborator's edits?","{""platform"": ""google_docs""}",203,3,B:209:3.9:2,209,3.9,general,FALSE,Y,,,student,"In Docs, all these versions of the same file are organized by date, with the newest on top (Figure 3.65). The top version in the history is the most current and is open by default. You can check the date of the current version on the title bar, right beside the name of the file. You can check the na"
+C,q16,"In Google Docs, how do you turn on the mode that records each collaborator's edits?","{""platform"": ""google_docs""}",203,1,B:203:3.8:2,203,3.8,google_docs,FALSE,Y,1,có nhắc chế độ Editing/Suggesting nhưng thiếu bước bật,student (lý do ghi bởi claude),The key to making sure your colleagues can make these suggested changes in the first place is to make sure they know to turn on Suggesting mode when they begin working on the document. You can either inform your colleagues about this manually or share the document with them in Comment-only mode by s
+C,q16,"In Google Docs, how do you turn on the mode that records each collaborator's edits?","{""platform"": ""google_docs""}",203,2,B:198:3.8:0,198,3.8,google_docs,FALSE,Y,,,student,"3.8 Collaborative Editing and Reviewing in Google Docs
+Learning Objectives
+By the end of this section, you will be able to:
+• Use the Tools menu and collaboration functionality
+Google Docs has many desirable features, but one of its biggest strengths as a word processing software 188 3 • Creating an"
+C,q16,"In Google Docs, how do you turn on the mode that records each collaborator's edits?","{""platform"": ""google_docs""}",203,3,B:181:3.6:1,181,3.6,google_docs,FALSE,Y,,,student,"Figure 3.36 The Edit menu has the standard copy, cut, and paste commands. (Google Docs is a trademark of Google LLC.) View Menu"
+A,q17,"If I make a copy of an older version of a Doc, do its comments and history come with it?",null,212,1,A:212:3.9:2,212,3.9,general,FALSE,Y,2,"rank 1 chứa đủ: bản copy không có version history, comments/suggestions không được copy",claude (sửa 0→2),"de of any
+version of a document, it is saved as a new Doc, without the version history attached to it. The comments and
+suggestions are also not copied.
+You might find that at some point, you would like to preserve some content from an older version, but not the
+whole document. In this case, you can"
+A,q17,"If I make a copy of an older version of a Doc, do its comments and history come with it?",null,212,2,A:212:3.9:5,212,3.9,general,FALSE,Y,,,student," information that is
+now needed was in a previous iteration of the document. Your team could also agree that a previous version
+might be preferred after additional edits are made. This feature of versioning in Docs can offer you some
+assurance that even if a document has gone through several stages,"
+A,q17,"If I make a copy of an older version of a Doc, do its comments and history come with it?",null,212,3,A:207:3.9:0,207,3.9,general,FALSE,Y,,,student,"3.9 Versions and Version History
+Learning Objectives
+By the end of this section, you will be able to:
+• Access and use versioning features in Google Docs
+• Access and use versioning features in Microsoft Word
+This section delves into a feature of Microsoft Word and Google Docs called versioning. Ver"
+B,q17,"If I make a copy of an older version of a Doc, do its comments and history come with it?",null,212,1,B:212:3.9:1,212,3.9,general,TRUE,Y,2,rank 1 chứa nguyên evidence,claude (sửa 0→2),"Having copies of the same file, but as different versions, is an option if you want to download these versions to your business's computer desktop or hard drive, instead of keeping them online. Having a different version can also be useful if you want to send this version to a client or any third pa"
+B,q17,"If I make a copy of an older version of a Doc, do its comments and history come with it?",null,212,2,B:207:3.9:1,207,3.9,general,FALSE,Y,,,student,"There are many user-friendly options in Docs's versioning, as you can clearly see all of the changes created within each version, as well as the time stamps for when each version was made. With this versioning technology, your team can edit a document simultaneously, and everyone will see the change"
+B,q17,"If I make a copy of an older version of a Doc, do its comments and history come with it?",null,212,3,B:207:3.9:0,207,3.9,general,FALSE,Y,,,student,"3.9 Versions and Version History
+Learning Objectives
+By the end of this section, you will be able to:
+• Access and use versioning features in Google Docs
+• Access and use versioning features in Microsoft Word
+This section delves into a feature of Microsoft Word and Google Docs called versioning. Ver"
+C,q17,"If I make a copy of an older version of a Doc, do its comments and history come with it?",null,212,1,B:212:3.9:1,212,3.9,general,TRUE,Y,2,rank 1 chứa nguyên evidence,claude (sửa 0→2),"Having copies of the same file, but as different versions, is an option if you want to download these versions to your business's computer desktop or hard drive, instead of keeping them online. Having a different version can also be useful if you want to send this version to a client or any third pa"
+C,q17,"If I make a copy of an older version of a Doc, do its comments and history come with it?",null,212,2,B:207:3.9:1,207,3.9,general,FALSE,Y,,,student,"There are many user-friendly options in Docs's versioning, as you can clearly see all of the changes created within each version, as well as the time stamps for when each version was made. With this versioning technology, your team can edit a document simultaneously, and everyone will see the change"
+C,q17,"If I make a copy of an older version of a Doc, do its comments and history come with it?",null,212,3,B:207:3.9:0,207,3.9,general,FALSE,Y,,,student,"3.9 Versions and Version History
+Learning Objectives
+By the end of this section, you will be able to:
+• Access and use versioning features in Google Docs
+• Access and use versioning features in Microsoft Word
+This section delves into a feature of Microsoft Word and Google Docs called versioning. Ver"
+A,q18,"With desktop Word, how many earlier versions of a file can I open, and what is required?",null,215,1,A:215:3.9:0,215,3.9,general,TRUE,Y,2,"rank 1 chứa đủ: 25 phiên bản, điều kiện OneDrive",student (lý do ghi bởi claude),"Figure 3.73 The version history in Microsoft Word desktop is activated if the document is located in OneDrive. (Used with permission
+from Microsoft)
+If you have a desktop version of Word, you have to sign in to your Microsoft account. You will be able to access
+the last 25 versions of your file on O"
+A,q18,"With desktop Word, how many earlier versions of a file can I open, and what is required?",null,215,2,A:214:3.9:1,214,3.9,general,FALSE,Y,,,student," the changes that you haven't seen since the last time you opened the file.
+This functionality is useful for quickly and easily seeing changes from collaborators without having to access
+the version history.
+Versioning in Microsoft Word
+Microsoft Office has many options for accessing version histori"
+A,q18,"With desktop Word, how many earlier versions of a file can I open, and what is required?",null,215,3,A:207:3.9:0,207,3.9,general,FALSE,Y,,,student,"3.9 Versions and Version History
+Learning Objectives
+By the end of this section, you will be able to:
+• Access and use versioning features in Google Docs
+• Access and use versioning features in Microsoft Word
+This section delves into a feature of Microsoft Word and Google Docs called versioning. Ver"
+B,q18,"With desktop Word, how many earlier versions of a file can I open, and what is required?",null,215,1,B:215:3.9:0,215,3.9,general,TRUE,Y,2,rank 1 chứa đủ,student (lý do ghi bởi claude),"Figure 3.73 The version history in Microsoft Word desktop is activated if the document is located in OneDrive. (Used with permission from Microsoft)
+If you have a desktop version of Word, you have to sign in to your Microsoft account. You will be able to access the last 25 versions of your file on O"
+B,q18,"With desktop Word, how many earlier versions of a file can I open, and what is required?",null,215,2,B:216:3.9:1,216,3.9,general,FALSE,Y,,,student,"You can access your version histories in Word by going to the File tab and selecting History. If you have a Microsoft 365 Word subscription, you can access the version history by going to the File tab, then Info, followed by Version History. There you can see the versions available and browse throug"
+B,q18,"With desktop Word, how many earlier versions of a file can I open, and what is required?",null,215,3,B:214:3.9:0,214,3.9,general,FALSE,Y,,,student,"Figure 3.72 (a) The versions are both time and date stamped. (b) You can restore to a particular version, make a copy of the version, or rename the version. (Google Docs is a trademark of Google LLC.)
+To quickly see new changes in a file, Docs has a See New Changes alert. It appears where the date n"
+C,q18,"With desktop Word, how many earlier versions of a file can I open, and what is required?",null,215,1,B:215:3.9:0,215,3.9,general,TRUE,Y,2,rank 1 chứa đủ,student (lý do ghi bởi claude),"Figure 3.73 The version history in Microsoft Word desktop is activated if the document is located in OneDrive. (Used with permission from Microsoft)
+If you have a desktop version of Word, you have to sign in to your Microsoft account. You will be able to access the last 25 versions of your file on O"
+C,q18,"With desktop Word, how many earlier versions of a file can I open, and what is required?",null,215,2,B:216:3.9:1,216,3.9,general,FALSE,Y,,,student,"You can access your version histories in Word by going to the File tab and selecting History. If you have a Microsoft 365 Word subscription, you can access the version history by going to the File tab, then Info, followed by Version History. There you can see the versions available and browse throug"
+C,q18,"With desktop Word, how many earlier versions of a file can I open, and what is required?",null,215,3,B:214:3.9:0,214,3.9,general,FALSE,Y,,,student,"Figure 3.72 (a) The versions are both time and date stamped. (b) You can restore to a particular version, make a copy of the version, or rename the version. (Google Docs is a trademark of Google LLC.)
+To quickly see new changes in a file, Docs has a See New Changes alert. It appears where the date n"
+A,q19,Why can wider line spacing help when several people are reviewing a draft?,null,163,1,A:163:3.3:2,163,3.3,microsoft_word,TRUE,Y,2,rank 1 chứa nguyên evidence,student (lý do ghi bởi claude)," little space between them. However, double-spacing
+may be used in working documents, and can be useful when there are multiple collaborators and you are
+using Track Changes. This allows for better visibility for the changes or edits, and makes it easier to see the
+revisions in progress. Double-spac"
+A,q19,Why can wider line spacing help when several people are reviewing a draft?,null,163,2,A:163:3.3:1,163,3.3,microsoft_word,FALSE,Y,,,student,"ine spacing, tab indentations, and alignment justification of
+text.
+As you learned in Formatting Document Layout in Microsoft Word, line spacing determines how much space
+there is between the lines of text within a document. There are different advantages to single-spacing versus
+double-spacing. Mos"
+A,q19,Why can wider line spacing help when several people are reviewing a draft?,null,163,3,A:190:3.7:0,190,3.7,google_docs,FALSE,Y,,,student,"Figure 3.46 The line spacing formatting options give the user more options than the standard paragraph line spacing. (Google Docs
+is a trademark of Google LLC.)
+Notice that you have the option to add a space before a paragraph or remove a space after a paragraph. When
+you are constructing a long doc"
+B,q19,Why can wider line spacing help when several people are reviewing a draft?,null,163,1,B:163:3.3:1,163,3.3,microsoft_word,TRUE,Y,2,rank 1 chứa nguyên evidence (double-spacing giúp thấy rõ chỉnh sửa),claude (điền ô trống),"As you learned in Formatting Document Layout in Microsoft Word, line spacing determines how much space there is between the lines of text within a document. There are different advantages to single-spacing versus double-spacing. Most business documents, such as emails and printed letters, use single"
+B,q19,Why can wider line spacing help when several people are reviewing a draft?,null,163,2,B:156:3.2:1,156,3.2,microsoft_word,FALSE,Y,,,student,"The line spacing can vary throughout the document. It does not have to be consistent. You can, at any point, change the line spacing by selecting the text you want to apply the different spacing to, and then selecting the spacing from the Line Spacing tool on the Home tab. But keep in mind the profe"
+B,q19,Why can wider line spacing help when several people are reviewing a draft?,null,163,3,B:190:3.7:0,190,3.7,google_docs,FALSE,Y,,,student,Figure 3.46 The line spacing formatting options give the user more options than the standard paragraph line spacing. (Google Docs is a trademark of Google LLC.)
+C,q19,Why can wider line spacing help when several people are reviewing a draft?,null,163,1,B:163:3.3:1,163,3.3,microsoft_word,TRUE,Y,2,rank 1 chứa nguyên evidence,claude (điền ô trống),"As you learned in Formatting Document Layout in Microsoft Word, line spacing determines how much space there is between the lines of text within a document. There are different advantages to single-spacing versus double-spacing. Most business documents, such as emails and printed letters, use single"
+C,q19,Why can wider line spacing help when several people are reviewing a draft?,null,163,2,B:156:3.2:1,156,3.2,microsoft_word,FALSE,Y,,,student,"The line spacing can vary throughout the document. It does not have to be consistent. You can, at any point, change the line spacing by selecting the text you want to apply the different spacing to, and then selecting the spacing from the Line Spacing tool on the Home tab. But keep in mind the profe"
+C,q19,Why can wider line spacing help when several people are reviewing a draft?,null,163,3,B:190:3.7:0,190,3.7,google_docs,FALSE,Y,,,student,Figure 3.46 The line spacing formatting options give the user more options than the standard paragraph line spacing. (Google Docs is a trademark of Google LLC.)
+A,q20,"In Microsoft Word, where do you go to adjust the margins of a page?","{""platform"": ""microsoft_word""}",155,1,A:155:3.2:1,155,3.2,microsoft_word,FALSE,Y,1,có chunk nói Layout tab chứa page setup nhưng không nêu margins/Margins icon,claude (điền ô trống),"stom Margins option at the bottom of the drop-down menu. In the dialog box shown in Figure 3.7, notice
+how you can adjust the margins to be various measurements.
+Figure 3.7 The Margins tab in the Page Setup dialog box lets you (a) choose from predetermined selections, or (b) create your own
+specific"
+A,q20,"In Microsoft Word, where do you go to adjust the margins of a page?","{""platform"": ""microsoft_word""}",155,2,A:154:3.2:9,154,3.2,microsoft_word,FALSE,Y,,,student,"ll pages in a document have a margin, a blank area from the edge of each side of the page to the content.
+Margins make a page more readable, and in printed documents, allow space for bindings, notes, and so on.
+144 3 • Creating and Working in Documents"
+A,q20,"In Microsoft Word, where do you go to adjust the margins of a page?","{""platform"": ""microsoft_word""}",155,3,A:153:3.2:3,153,3.2,microsoft_word,FALSE,Y,,,student,"(Used with permission from
+Microsoft)
+Page Setup
+The Layout tab contains commands and tools for adjusting the overall page setup of your document, located
+within the Page Setup command group. Page setup typically includes adjusting the paper size, margins, and
+orientation, as well as adding features"
+B,q20,"In Microsoft Word, where do you go to adjust the margins of a page?","{""platform"": ""microsoft_word""}",155,1,B:197:3.7:1,197,3.7,google_docs,FALSE,Y,1,"Layout tab = page setup, thiếu bước margins",claude (điền ô trống),"As in Word, the Page Setup commands are for selecting the paper size and orientation (horizontally or vertically). In Docs, it is all done from the File menu; Page Setup is near the bottom of the File menu. In Figure 3.55, you can see the options in the dialog box. The first combo box is for choosin"
+B,q20,"In Microsoft Word, where do you go to adjust the margins of a page?","{""platform"": ""microsoft_word""}",155,2,B:153:3.2:3,153,3.2,microsoft_word,FALSE,Y,,,student,"The Layout tab contains commands and tools for adjusting the overall page setup of your document, located within the Page Setup command group. Page setup typically includes adjusting the paper size, margins, and orientation, as well as adding features like section breaks and columns. There are accep"
+B,q20,"In Microsoft Word, where do you go to adjust the margins of a page?","{""platform"": ""microsoft_word""}",155,3,B:155:3.2:1,155,3.2,microsoft_word,FALSE,Y,,,student,"Figure 3.7 The Margins tab in the Page Setup dialog box lets you (a) choose from predetermined selections, or (b) create your own specifications through the custom margin dialog box. (Used with permission from Microsoft) Orientation"
+C,q20,"In Microsoft Word, where do you go to adjust the margins of a page?","{""platform"": ""microsoft_word""}",155,1,B:153:3.2:3,153,3.2,microsoft_word,FALSE,Y,1,"Layout tab có các công cụ page layout, thiếu bước margins",claude (điền ô trống),"The Layout tab contains commands and tools for adjusting the overall page setup of your document, located within the Page Setup command group. Page setup typically includes adjusting the paper size, margins, and orientation, as well as adding features like section breaks and columns. There are accep"
+C,q20,"In Microsoft Word, where do you go to adjust the margins of a page?","{""platform"": ""microsoft_word""}",155,2,B:155:3.2:1,155,3.2,microsoft_word,FALSE,Y,,,student,"Figure 3.7 The Margins tab in the Page Setup dialog box lets you (a) choose from predetermined selections, or (b) create your own specifications through the custom margin dialog box. (Used with permission from Microsoft) Orientation"
+C,q20,"In Microsoft Word, where do you go to adjust the margins of a page?","{""platform"": ""microsoft_word""}",155,3,B:153:3.2:2,153,3.2,microsoft_word,FALSE,Y,,,student,"Setting the page layout for your document in Microsoft Word allows you to present material in a way that maximizes ease of use. Page layout includes setting margins and page size, choosing the page orientation, introducing features like columns, and breaking up a document into sections so that diffe"

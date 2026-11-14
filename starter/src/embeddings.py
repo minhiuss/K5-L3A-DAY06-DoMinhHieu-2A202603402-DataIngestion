@@ -1,5 +1,6 @@
 """Choose a real embedding provider (API or local) and implement this contract."""
 from typing import Protocol
+from sentence_transformers import SentenceTransformer
 
 
 class Embedder(Protocol):
@@ -20,10 +21,11 @@ class MyEmbedder:
 
     def __init__(self, model_name: str) -> None:
         self.model_name = model_name
-        raise NotImplementedError("TODO: initialize real embedder and dimensions")
-
+        self.model = SentenceTransformer(model_name)
+        self.dimensions = self.model.get_embedding_dimension()
+    
     def embed_documents(self, texts: list[str]) -> list[list[float]]:
-        raise NotImplementedError("TODO: embed_documents")
+        return self.model.encode(texts, normalize_embeddings=True).tolist()
 
     def embed_query(self, question: str) -> list[float]:
-        raise NotImplementedError("TODO: embed_query")
+        return self.model.encode(question, normalize_embeddings=True).tolist()

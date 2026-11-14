@@ -1,0 +1,50 @@
+{
+  "A": {
+    "coherence_mean": 0.6,
+    "coherence_n": 10,
+    "coherence_counts": {
+      "0": 4,
+      "1": 6,
+      "2": 0
+    },
+    "metadata_ok": "15/15",
+    "grounding_counts": {
+      "0": 1,
+      "1": 1,
+      "2": 3
+    },
+    "grounding_mean": 1.4
+  },
+  "B": {
+    "coherence_mean": 1.8,
+    "coherence_n": 10,
+    "coherence_counts": {
+      "0": 0,
+      "1": 2,
+      "2": 8
+    },
+    "metadata_ok": "15/15",
+    "grounding_counts": {
+      "0": 1,
+      "1": 1,
+      "2": 3
+    },
+    "grounding_mean": 1.4
+  },
+  "C": {
+    "coherence_mean": 1.8,
+    "coherence_n": 10,
+    "coherence_counts": {
+      "0": 0,
+      "1": 2,
+      "2": 8
+    },
+    "metadata_ok": "15/15",
+    "grounding_counts": {
+      "0": 0,
+      "1": 2,
+      "2": 3
+    },
+    "grounding_mean": 1.6
+  }
+}
